@@ -1,0 +1,38 @@
+.cards {
+    display: flex;
+    flex-direction: row !important;
+    .card {
+        margin: inherit;
+        width: 350px;
+        height: auto;
+        margin-right: 30px;
+
+        &__type {
+            margin-bottom: 65px;
+            margin-left: auto;
+        }
+    
+        &__number {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 50px;
+        }
+        
+    
+        &__bottom-row {
+            display: flex;
+            justify-content: space-between;
+    
+            &__exp-date {
+                font-size: 20px;
+                font-weight: 500;
+            }
+    
+            &__username {
+                font-size: 20px;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+        }
+    }
+} 

@@ -1,25 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
+import CardsList from './components/cardsList/CardsList';
+import Input from './components/input/Input.jsx'
+
+import CardAdd from './pages/CardAdd';
+import CardEdit from './pages/CardEdit';
+import MyCards from './pages/MyCards';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+       <PersistGate loading={null} persistor={persistor}>       
+        <Router>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+          <Switch>            
+            <Route exact path="/cards" component={MyCards} />
+            <Route exact path="/cards/add" component={CardAdd} />
+            <Route exact path="/cards/:cardId/edit" component={CardEdit} />            
+            <Route>
+              <Redirect to="/cards" />
+            </Route>
+          </Switch>        
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
